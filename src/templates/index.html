@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HOLA</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block titulo %}
+    Facturación
+    
+{%endblock%}
+
+{% block body%}
+    <div class="row">
+        <div class="row">
+            <div class="col-md-3">
+    <h2>Registro de Facturas</h2>
+    <form action=""></form>
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="nombre">
+    </div>
+    <div class="form-group">
+        <label for="cedula">Cedula</label>
+        <input type="text" class="form-control" name="cedula" id="cedula">
+    </div>
+    <div class="form-group">
+        <label for="valor">Valor</label>
+        <input type="text" class="form-control" name="valor" id="valor">
+    </div>
+    <div class="form-group">
+        <label for="mes">mes actual</label>
+        <input type="month" class="form-control" name="mes" id="mes">
+    </div>
+    <div class="form-group">
+        <label for="fecha1">Fecha vencimiento</label>
+        <input type="date" class="form-control" name="fecha1" id="fecha1">
+    </div>
+    <div class="form-group">
+        <p>Tipo de recibo: 
+            <select> 
+            <option value="1">Agua</option> 
+            <option value="2">Energia</option> 
+            <option value="3">Gas</option>  
+            </select> 
+            </p>
+    </div>
+    <div class="form-group">
+        <p>Torre: 
+            <select> 
+            <option value="1">Torre 1</option> 
+            <option value="2">Torre 2</option> 
+            <option value="3">Torre 3</option> 
+            <option value="4">Torre 4</option>  
+            </select> 
+            </p>
+    </div class="form-group">
+    <div>
+        <p>Grupo de torre: 
+            <select> 
+            <option value="1">sección 1</option> 
+            <option value="2">sección 2</option> 
+            <option value="3">sección 3</option> 
+            </select> 
+            </p>
+    </div>
+    <div class="form-group d-grip gap-2">
+        <button id="boton_form" class="btn btn-outline-primary mt-3" type="submit"><i class="fa-sharp fa-solid fa-floppy-disk"></i>GUARDAR </button>
+    </div>
+    </div>
+            </div>
+        </div>
+{% endblock %}
