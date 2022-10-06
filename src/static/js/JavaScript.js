@@ -1,53 +1,32 @@
-$(document).ready(function() {
-    $("#do_login").click(function() { 
-       closeLoginInfo();
-       $(this).parent().find('span').css("display","none");
-       $(this).parent().find('span').removeClass("i-save");
-       $(this).parent().find('span').removeClass("i-warning");
-       $(this).parent().find('span').removeClass("i-close");
-       
-        var proceed = true;
-        $("#login_form input").each(function(){
-            
-            if(!$.trim($(this).val())){
-                $(this).parent().find('span').addClass("i-warning");
-            	$(this).parent().find('span').css("display","block");  
-                proceed = false;
-            }
-        });
-       
-        if(proceed) //everything looks good! proceed...
-        {
-            $(this).parent().find('span').addClass("i-save");
-            $(this).parent().find('span').css("display","block");
-        }
-    });
-    
-    //reset previously results and hide all message on .keyup()
-    $("#login_form input").keyup(function() { 
-        $(this).parent().find('span').css("display","none");
-    });
- 
-  openLoginInfo();
-  setTimeout(closeLoginInfo, 1000);
+$(function() {
+	$(".btn").click(function() {
+		$(".form-signin").toggleClass("form-signin-left");
+    $(".form-signup").toggleClass("form-signup-left");
+    $(".frame").toggleClass("frame-long");
+    $(".signup-inactive").toggleClass("signup-active");
+    $(".signin-active").toggleClass("signin-inactive");
+    $(".forgot").toggleClass("forgot-left");   
+    $(this).removeClass("idle").addClass("active");
+	});
 });
 
-function openLoginInfo() {
-    $(document).ready(function(){ 
-    	$('.b-form').css("opacity","0.01");
-      $('.box-form').css("left","-37%");
-      $('.box-info').css("right","-37%");
-    });
-}
+$(function() {
+	$(".btn-signup").click(function() {
+  $(".nav").toggleClass("nav-up");
+  $(".form-signup-left").toggleClass("form-signup-down");
+  $(".success").toggleClass("success-left"); 
+  $(".frame").toggleClass("frame-short");
+	});
+});
 
-function closeLoginInfo() {
-    $(document).ready(function(){ 
-    	$('.b-form').css("opacity","1");
-    	$('.box-form').css("left","0px");
-      $('.box-info').css("right","-5px"); 
-    });
-}
-
-$(window).on('resize', function(){
-      closeLoginInfo();
+$(function() {
+	$(".btn-signin").click(function() {
+  $(".btn-animate").toggleClass("btn-animate-grow");
+  $(".welcome").toggleClass("welcome-left");
+  $(".cover-photo").toggleClass("cover-photo-down");
+  $(".frame").toggleClass("frame-short");
+  $(".profile-photo").toggleClass("profile-photo-down");
+  $(".btn-goback").toggleClass("btn-goback-up");
+  $(".forgot").toggleClass("forgot-fade");
+	});
 });
