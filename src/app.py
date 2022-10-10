@@ -37,7 +37,7 @@ def agregarUsuarios():
         return render_template("registro.html")
     else:
         flash("Registro no sea Guardado Correctamente","error")
-        return redirect(url_for('login.html'))
+        return redirect(url_for('index'))
 
 def crearTablaUsuarios():
     cursor = con_bd.cursor()
