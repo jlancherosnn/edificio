@@ -12,6 +12,9 @@ def index():
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
+@app.route('/index')
+def index1():
+    return render_template('index.html')
 
 @app.route('/logo')
 def logo():
