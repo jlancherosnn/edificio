@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titulo %}
-    Facturación
+    Iniciar Sesión
     
 {%endblock%}
 
@@ -32,12 +32,12 @@
                     <div class="titulo">
                         Bienvenido
                     </div>
-                    <form id="loginform" action="/validacion" method="post">
+                    <form id="loginform" action="/guardar_usuarios" method="post">
                         <input type="text" name="usuario" placeholder="Usuario" required>
 
                         <input type="password" placeholder="Contraseña" name="password" required>
 
-                        <button type="submit" title="Ingresar" name="Ingresar">Login</button>
+                        <button type="submit" title="Ingresar" name="Ingresar">Iniciar Sesión</button>
                     </form>
                 </div>
             </div>
