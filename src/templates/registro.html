@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block titulo %}
+    Registro
+    
+{%endblock%}
+
+{% block body%}
+    <form action="">
+        <div>
+            <label for="nombre">Nombre Y Apellido</label>
+            <input type="text" class="form-control" name="nombre" id="nombre"> 
+        </div>
+        <div>
+            <label for="usuario">Usuario</label>
+            <input type="text" class="form-control" name="usuario" id="usuario"> 
+        </div>
+        <div>
+            <label for="usuario">Correo</label>
+            <input type="email" class="form-control" name="email" id="email"> 
+        </div>
+        <div>
+            <label for="usuario">Contraseña</label>
+            <input type="password" class="form-control" name="contraseña" id="contraseña"> 
+        </div>
+        <div>
+            <label for="usuario">Contraseña</label>
+            <input type="password" class="form-control" name="contraseña" id="contraseña"> 
+        </div>
+
+    </form>
+    
+
+{%endblock%}
