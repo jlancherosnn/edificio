@@ -52,7 +52,7 @@ def validacion():
     cursor = con_bd.cursor()
     usuario = request.form['usuario']
     password = request.form['password']
-    sql = """SELECT * FROM usuarios WHERE usuario='Julian' AND password='12345'"""
+    sql = """SELECT * FROM usuarios WHERE usuario=usuario AND password=password"""
     cursor.execute(sql)
     con_bd.commit()
     print(cursor.execute(sql, (usuario,password)))
