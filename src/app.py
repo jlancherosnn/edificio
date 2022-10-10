@@ -83,7 +83,7 @@ def crearTablaAgua():
                         vencimiento character(120)  NOT NULL,
                         torre character(120)  NOT NULL,
                         grupo character(120)  NOT NULL,
-                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        CONSTRAINT pk_Agua_id PRIMARY KEY ("id")
                         );
                 """)
     con_bd.commit()
@@ -91,7 +91,7 @@ def crearTablaAgua():
 def crearTablaGas():
     cursor = con_bd.cursor()
     cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS serviceAgua( 
+                    CREATE TABLE IF NOT EXISTS servicegas( 
                         id serial NOT NULL,
                         nombre character(50)  NOT NULL,
                         cedula character(120)  NOT NULL,
@@ -100,7 +100,7 @@ def crearTablaGas():
                         vencimiento character(120)  NOT NULL,
                         torre character(120)  NOT NULL,
                         grupo character(120)  NOT NULL,
-                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        CONSTRAINT pk_gas_id PRIMARY KEY ("id")
                         );
                 """)
     con_bd.commit()
@@ -108,7 +108,7 @@ def crearTablaGas():
 def crearTablaLuz():
     cursor = con_bd.cursor()
     cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS serviceAgua( 
+                    CREATE TABLE IF NOT EXISTS serviceluz( 
                         id serial NOT NULL,
                         nombre character(50)  NOT NULL,
                         cedula character(120)  NOT NULL,
@@ -117,7 +117,7 @@ def crearTablaLuz():
                         vencimiento character(120)  NOT NULL,
                         torre character(120)  NOT NULL,
                         grupo character(120)  NOT NULL,
-                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        CONSTRAINT pk_luz_id PRIMARY KEY ("id")
                         );
                 """)
     con_bd.commit()
