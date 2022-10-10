@@ -7,7 +7,7 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
