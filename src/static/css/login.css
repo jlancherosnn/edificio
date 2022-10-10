@@ -2,10 +2,10 @@ body {
     font-family: 'Overpass', sans-serif;
     font-weight: normal;
     font-size: 100%;
-    color: #1b262c;
+    color: blue;
     
     margin: 0;
-    background-color: #0f4c75;
+    background-color: #F31D27;
 }
 
 #contenedor {
