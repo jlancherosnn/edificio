@@ -20,7 +20,7 @@ def logo():
     cursor.execute(sql)
     UsuariosRegistradas = cursor.fetchall()
     return render_template('login.html', usuarios = UsuariosRegistradas)
-
+############################## Guardar Usuarios##############################
 @app.route('/guardar_usuarios', methods=['POST'])
 def agregarUsuarios():
     cursor = con_bd.cursor()
@@ -51,7 +51,7 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
-
+##################### Validacion###############
 @app.route('/validacion', methods=['GET','POST'])
 def validacion():
     cursor = con_bd.cursor()
@@ -66,8 +66,9 @@ def validacion():
         print(persona[1])
         print(persona[2])
         if usuario in persona[1] and password in persona[2]:
-            print("USUARIO HALLADO")
+            flash("Registro Guardado Correctamente","info")
             return render_template("index.html")
+    flash("Registro no sea Guardado Correctamente","error")
     return render_template("login.html")
 
 #######################TABLAS###########################################
@@ -88,6 +89,29 @@ def crearTablaAgua():
                 """)
     con_bd.commit()
 
+@app.route('/guardar_agua', methods=['POST'])
+def agregaragua():
+    cursor = con_bd.cursor()
+    nombre = request.form['usuario']
+    cedula = request.form['password']
+    valor = request.form['valor']
+    mes = request.form['mes']
+    vencimiento = request.form['fecha1']
+    torre = request.form['torre']
+    grupo = request.form['grupo']
+    if  nombre and cedula and valor and mes and vencimiento and torre and grupo:
+        sql ="""
+            INSERT INTO serviceAgua( nombre,cedula,valor,mes,vencimiento,torre,grupo)
+            VALUES ( %s, %s, %s,%s, %s , %s,%s)
+        """
+        cursor.execute(sql,(nombre,cedula,valor,mes,vencimiento,torre,grupo))
+        con_bd.commit()
+        flash("Registro Guardado Correctamente","info")
+        return render_template("index.html")
+    else:
+        flash("Registro no sea Guardado Correctamente","error")
+        return redirect(url_for('index'))
+##################################### tabla gas########################
 def crearTablaGas():
     cursor = con_bd.cursor()
     cursor.execute("""
