@@ -8,6 +8,7 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 @app.route('/')
 def index():
     return render_template('login.html')
+
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
@@ -50,7 +51,23 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
-
+@app.route('/validacion', methods=['GET','POST'])
+def validacion():
+    cursor = con_bd.cursor()
+    usuario = request.form['usuario']
+    password = request.form['password']
+    sql = """
+    SELECT*FROM usuarios
+    """
+    cursor.execute(sql)
+    personas = cursor.fetchall()
+    for persona in personas:
+        print(persona[1])
+        print(persona[2])
+        if usuario in persona[1] and password in persona[2]:
+            print("USUARIO HALLADO")
+            return render_template("index.html")
+    return render_template("login.html")
 
 if __name__ == '__main__':
     crearTablaUsuarios()
