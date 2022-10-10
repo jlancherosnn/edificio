@@ -8,7 +8,7 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 @app.route('/')
 def index():
     return render_template('login.html')
-    
+
 @app.route('/logo')
 def logo():
     cursor = con_bd.cursor()
@@ -40,7 +40,7 @@ def crearTablaUsuarios():
     cursor = con_bd.cursor()
     cursor.execute("""
                     CREATE TABLE IF NOT EXISTS usuarios( 
-                        Idusuario serial NOT NULL,
+                        id serial NOT NULL,
                         usuario character(50)  NOT NULL,
                         password character(120)  NOT NULL,
                         CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
