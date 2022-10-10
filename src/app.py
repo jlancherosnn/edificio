@@ -8,6 +8,9 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
 
 @app.route('/logo')
 def logo():
@@ -47,6 +50,8 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
+
+
 if __name__ == '__main__':
     crearTablaUsuarios()
     app.run(debug=True)
