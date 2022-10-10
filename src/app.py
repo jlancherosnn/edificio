@@ -7,7 +7,7 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/logo')
 def logo():
@@ -34,7 +34,7 @@ def agregarUsuarios():
         return render_template("registro.html")
     else:
         flash("Registro no sea Guardado Correctamente","error")
-        return redirect(url_for('login.html'))
+        return redirect(url_for('index'))
 
 def crearTablaUsuarios():
     cursor = con_bd.cursor()
