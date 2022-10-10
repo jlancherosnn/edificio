@@ -47,6 +47,17 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
+@app.route('/validacion', methods=['GET','POST'])
+def validacion():
+    cursor = con_bd.cursor()
+    usuario = request.form['usuario']
+    password = request.form['password']
+    sql = """SELECT * FROM usuarios WHERE usuario='Julian' AND password='12345'"""
+    cursor.execute(sql)
+    con_bd.commit()
+    print(cursor.execute(sql, (usuario,password)))
+    print(cursor.execute(sql))
+    return render_template('index.html')
 if __name__ == '__main__':
     crearTablaUsuarios()
     app.run(debug=True)
