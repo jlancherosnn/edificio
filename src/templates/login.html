@@ -8,12 +8,31 @@
 {% block body%}
     <body>
         <div id="contenedor">
+            <!--Inicio mensajes flash-->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages%}
+                    {% for category, message in messages %}
+                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+
+                            <strong>{{info}} {{message}}!</strong> 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% if category == "error" %}
+                            <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{error}}{{messages}}!</strong> 
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {%endif%}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <!--Fin mensajes flash-->
             <div id="central">
                 <div id="login">
                     <div class="titulo">
                         Bienvenido
                     </div>
-                    <form id="loginform">
+                    <form id="loginform" action="/guardar_usuarios" method="post">
                         <input type="text" name="usuario" placeholder="Usuario" required>
 
                         <input type="password" placeholder="Contraseña" name="password" required>
