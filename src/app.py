@@ -51,6 +51,7 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
+
 @app.route('/validacion', methods=['GET','POST'])
 def validacion():
     cursor = con_bd.cursor()
@@ -69,6 +70,63 @@ def validacion():
             return render_template("index.html")
     return render_template("login.html")
 
+#######################TABLAS###########################################
+def crearTablaAgua():
+    cursor = con_bd.cursor()
+    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS serviceAgua( 
+                        id serial NOT NULL,
+                        nombre character(50)  NOT NULL,
+                        cedula character(120)  NOT NULL,
+                        valor character(120)  NOT NULL,
+                        mes character(120)  NOT NULL,
+                        vencimiento character(120)  NOT NULL,
+                        torre character(120)  NOT NULL,
+                        grupo character(120)  NOT NULL,
+                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        );
+                """)
+    con_bd.commit()
+
+def crearTablaGas():
+    cursor = con_bd.cursor()
+    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS serviceAgua( 
+                        id serial NOT NULL,
+                        nombre character(50)  NOT NULL,
+                        cedula character(120)  NOT NULL,
+                        valor character(120)  NOT NULL,
+                        mes character(120)  NOT NULL,
+                        vencimiento character(120)  NOT NULL,
+                        torre character(120)  NOT NULL,
+                        grupo character(120)  NOT NULL,
+                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        );
+                """)
+    con_bd.commit()
+
+def crearTablaLuz():
+    cursor = con_bd.cursor()
+    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS serviceAgua( 
+                        id serial NOT NULL,
+                        nombre character(50)  NOT NULL,
+                        cedula character(120)  NOT NULL,
+                        valor character(120)  NOT NULL,
+                        mes character(120)  NOT NULL,
+                        vencimiento character(120)  NOT NULL,
+                        torre character(120)  NOT NULL,
+                        grupo character(120)  NOT NULL,
+                        CONSTRAINT pk_usuarios_id PRIMARY KEY ("id")
+                        );
+                """)
+    con_bd.commit()
+
+
+
 if __name__ == '__main__':
     crearTablaUsuarios()
+    crearTablaAgua()
+    crearTablaLuz()
+    crearTablaGas()
     app.run(debug=True)
