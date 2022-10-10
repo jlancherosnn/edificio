@@ -5,7 +5,7 @@ body {
     color: blue;
     
     margin: 0;
-    background: url(https://i.ibb.co/C5DCGcH/26366-2.jpg);
+    background: url(https://i.ibb.co/JxM45qQ/3433312.jpg);
     background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
@@ -73,7 +73,7 @@ body {
 
 #login input::placeholder {
     font-family: 'Overpass', sans-serif;
-    color: #E4E4E4;
+    color: #6a6b6bc9;
 }
 
 #login button {
