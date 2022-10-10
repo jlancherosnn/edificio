@@ -6,26 +6,31 @@
 {%endblock%}
 
 {% block body%}
-    <form action="">
-        <div>
+    <form class="formulario_registro" action="">
+        <h1>Registro Usuario</h1>
+        <div class="registro1">
             <label for="nombre">Nombre Y Apellido</label>
             <input type="text" class="form-control" name="nombre" id="nombre"> 
         </div>
-        <div>
+        <div class="registro1">
             <label for="usuario">Usuario</label>
             <input type="text" class="form-control" name="usuario" id="usuario"> 
         </div>
-        <div>
+        <div class="registro1">
             <label for="usuario">Correo</label>
             <input type="email" class="form-control" name="email" id="email"> 
         </div>
-        <div>
+        <div class="registro1"> 
             <label for="usuario">Contraseña</label>
             <input type="password" class="form-control" name="contraseña" id="contraseña"> 
         </div>
-        <div>
+        <div class="registro1">
             <label for="usuario">Contraseña</label>
             <input type="password" class="form-control" name="contraseña" id="contraseña"> 
+        </div>
+        <div boton1>
+            <button id="boton_form" class="btn btn-outline-primary mt-3" type="submit"><i class="fa-sharp fa-solid fa-hexagon-check"></i>REGISTRAR </button>
+
         </div>
 
     </form>
