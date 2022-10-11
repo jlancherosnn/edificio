@@ -1,62 +1,62 @@
-{% extends "layout1.html" %}
+{% extends "layout.html" %}
 
 {% block titulo %}
     Facturación
-    
+
 {%endblock%}
 
 {% block body%}
+<form action="/guardarrecibo    " method="post">
     <div class="row">
         <div class="row">
             <div class="col-md-3">
     <h2>Registro de Facturas</h2>
-    <form action=""></form>
-    <div class="form-group">
+    <div>
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" name="nombre" id="nombre">
     </div>
-    <div class="form-group">
+    <div>
         <label for="cedula">Cedula</label>
         <input type="text" class="form-control" name="cedula" id="cedula">
     </div>
-    <div class="form-group">
+    <div >
         <label for="valor">Valor</label>
         <input type="text" class="form-control" name="valor" id="valor">
     </div>
-    <div class="form-group">
+    <div>
         <label for="mes">mes actual</label>
         <input type="month" class="form-control" name="mes" id="mes">
     </div>
-    <div class="form-group">
+    <div>
         <label for="fecha1">Fecha vencimiento</label>
         <input type="date" class="form-control" name="fecha1" id="fecha1">
     </div>
-    <div class="form-group">
-        <p>Tipo de recibo: 
-            <select> 
-            <option  name="agua" value="1">Agua</option> 
-            <option name="luz" value="2">Energia</option> 
-            <option name="gas" value="3">Gas</option>  
-            </select> 
+    <div>
+        <p>Tipo de recibo:
+            <select name="datos">
+            <option value="Agua">Agua</option>
+            <option value="Energia">Energia</option>
+            <option value="Gas">Gas</option>
+            </select>
             </p>
     </div>
-    <div class="form-group">
-        <p>Torre: 
-            <select> 
-            <option name="torre"  value="1">Torre 1</option> 
-            <option name="torre1" value="2">Torre 2</option> 
-            <option name="torre1" value="3">Torre 3</option> 
-            <option name="torre1" value="4">Torre 4</option>  
-            </select> 
+    <div >
+        <p>Torre:
+            <select name="torre">
+            <option value="1">Torre 1</option>
+            <option value="2">Torre 2</option>
+            <option value="3">Torre 3</option>
+            <option value="4">Torre 4</option>
+            </select>
             </p>
-    </div class="form-group">
+    </div>
     <div>
-        <p>Grupo de torre: 
-            <select> 
-            <option  name="grupo" value="1">sección 1</option> 
-            <option name="grupo" value="2">sección 2</option> 
-            <option name="grupo" value="3">sección 3</option> 
-            </select> 
+        <p>Grupo de torre:
+            <select name="piso">
+            <option value="1">sección 1</option>
+            <option value="2">sección 2</option>
+            <option value="3">sección 3</option>
+            </select>
             </p>
     </div>
     <div class="form-group d-grip gap-2">
@@ -65,4 +65,5 @@
     </div>
             </div>
         </div>
+</form>
 {% endblock %}

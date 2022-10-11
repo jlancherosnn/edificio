@@ -12,9 +12,6 @@ def index():
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
-@app.route('/index')
-def index1():
-    return render_template('index.html')
 
 @app.route('/logo')
 def logo():
@@ -23,8 +20,55 @@ def logo():
     cursor.execute(sql)
     UsuariosRegistradas = cursor.fetchall()
     return render_template('login.html', usuarios = UsuariosRegistradas)
-############################## Guardar Usuarios##############################
-@app.route('/guardar_usuarios', methods=['POST'])
+
+
+@app.route('/guardarrecibo', methods=['POST','GET'])
+def guardar():
+    cursor = con_bd.cursor()
+    #nombre = request.form['nombre']
+    #print(f"dato recuperado de {nombre}")
+    dato = request.form.get('datos')
+    print(f"recibo de {dato}")
+    nombre = request.form['nombre']
+    cedula = request.form['cedula']
+    valor = request.form['valor']
+    mes = request.form['mes']
+    vencimiento = request.form['fecha1']
+    tore = request.form.get('torre')
+    piso = request.form.get('piso')
+    print(f"datos nombre{nombre} - {cedula} - {valor} - {mes} - {vencimiento} - {tore} - {piso}")
+    if nombre and cedula and valor and mes and vencimiento and tore and piso:
+        if dato == "Agua":
+            sql = """
+                    INSERT INTO serviceAgua( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+        elif dato == "Energia":
+            sql = """
+                    INSERT INTO serviceluz( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+        elif dato == "Gas":
+            sql = """
+                    INSERT INTO servicegas( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+    else:
+        return render_template('index.html')
+
+@app.route('/guardar_usuarios', methods=['POST','GET'])
 def agregarUsuarios():
     cursor = con_bd.cursor()
     usuario = request.form['usuario']
@@ -54,7 +98,7 @@ def crearTablaUsuarios():
                         );
                 """)
     con_bd.commit()
-##################### Validacion###############
+
 @app.route('/validacion', methods=['GET','POST'])
 def validacion():
     cursor = con_bd.cursor()
@@ -69,16 +113,15 @@ def validacion():
         print(persona[1])
         print(persona[2])
         if usuario in persona[1] and password in persona[2]:
-            flash("Registro Guardado Correctamente","info")
+            print("USUARIO HALLADO")
             return render_template("index.html")
-    flash("Registro no sea Guardado Correctamente","error")
     return render_template("login.html")
 
 #######################TABLAS###########################################
 def crearTablaAgua():
     cursor = con_bd.cursor()
     cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS serviceagua( 
+                    CREATE TABLE IF NOT EXISTS serviceAgua( 
                         id serial NOT NULL,
                         nombre character(50)  NOT NULL,
                         cedula character(120)  NOT NULL,
@@ -92,29 +135,6 @@ def crearTablaAgua():
                 """)
     con_bd.commit()
 
-@app.route('/guardar_agua', methods=['POST'])
-def agregaragua():
-    cursor = con_bd.cursor()
-    nombre = request.form['usuario']
-    cedula = request.form['password']
-    valor = request.form['valor']
-    mes = request.form['mes']
-    vencimiento = request.form['fecha1']
-    torre = request.form['torre']
-    grupo = request.form['grupo']
-    if  nombre and cedula and valor and mes and vencimiento and torre and grupo:
-        sql ="""
-            INSERT INTO serviceAgua( nombre,cedula,valor,mes,vencimiento,torre,grupo)
-            VALUES ( %s, %s, %s,%s, %s , %s,%s)
-        """
-        cursor.execute(sql,(nombre,cedula,valor,mes,vencimiento,torre,grupo))
-        con_bd.commit()
-        flash("Registro Guardado Correctamente","info")
-        return render_template("index.html")
-    else:
-        flash("Registro no sea Guardado Correctamente","error")
-        return redirect(url_for('index'))
-##################################### tabla gas########################
 def crearTablaGas():
     cursor = con_bd.cursor()
     cursor.execute("""
@@ -132,30 +152,6 @@ def crearTablaGas():
                 """)
     con_bd.commit()
 
-@app.route('/guardar_gas', methods=['POST'])
-def agregaragua():
-    cursor = con_bd.cursor()
-    nombre = request.form['usuario']
-    cedula = request.form['password']
-    valor = request.form['valor']
-    mes = request.form['mes']
-    vencimiento = request.form['fecha1']
-    torre = request.form['torre']
-    grupo = request.form['grupo']
-    if  nombre and cedula and valor and mes and vencimiento and torre and grupo:
-        sql ="""
-            INSERT INTO servicegas( nombre,cedula,valor,mes,vencimiento,torre,grupo)
-            VALUES ( %s, %s, %s,%s, %s , %s,%s)
-        """
-        cursor.execute(sql,(nombre,cedula,valor,mes,vencimiento,torre,grupo))
-        con_bd.commit()
-        flash("Registro Guardado Correctamente","info")
-        return render_template("index.html")
-    else:
-        flash("Registro no sea Guardado Correctamente","error")
-        return redirect(url_for('index'))
-
-############################# tabla luz #########################
 def crearTablaLuz():
     cursor = con_bd.cursor()
     cursor.execute("""
@@ -172,29 +168,6 @@ def crearTablaLuz():
                         );
                 """)
     con_bd.commit()
-
-@app.route('/guardar_luz', methods=['POST'])
-def agregaragua():
-    cursor = con_bd.cursor()
-    nombre = request.form['usuario']
-    cedula = request.form['password']
-    valor = request.form['valor']
-    mes = request.form['mes']
-    vencimiento = request.form['fecha1']
-    torre = request.form['torre']
-    grupo = request.form['grupo']
-    if  nombre and cedula and valor and mes and vencimiento and torre and grupo:
-        sql ="""
-            INSERT INTO serviceluz( nombre,cedula,valor,mes,vencimiento,torre,grupo)
-            VALUES ( %s, %s, %s,%s, %s , %s,%s)
-        """
-        cursor.execute(sql,(nombre,cedula,valor,mes,vencimiento,torre,grupo))
-        con_bd.commit()
-        flash("Registro Guardado Correctamente","info")
-        return render_template("index.html")
-    else:
-        flash("Registro no sea Guardado Correctamente","error")
-        return redirect(url_for('index'))
 
 
 
