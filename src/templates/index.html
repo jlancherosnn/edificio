@@ -65,5 +65,58 @@
     </div>
             </div>
         </div>
+        <form id="tablas" action="/datos", method="post">
+            <div class="col-md-8">
+                    <table id="tabla_resultados" class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cedula</th>
+                                <th>Valor</th>
+                                <th>Mes</th>
+                                <th>Vencimiento</th>
+                                <th>Torre</th>
+                                <th>Grupo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for usuarios in usuarios %}
+                            <tr>
+                                <td id="tabla_nombre{{usuarios[0]}}">{{usuarios[1]}}</td>
+                                <td id="tabla_cedula{{usuarios[0]}}">{{usuarios[2]}}</td>
+                                <td id="taba_valor{{usuarios[0]}}">{{usuarios[3]}}</td>
+                                <td id="taba_mes{{usuarios[0]}}">{{usuarios[4]}}</td>
+                                <td id="taba_vencimiento{{usuarios[0]}}">{{usuarios[5]}}</td>
+                                <td id="taba_torre{{usuarios[0]}}">{{usuarios[6]}}</td>
+                                <td id="taba_grupo{{usuarios[0]}}">{{usuarios[7]}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+            </div>
+    </form>
+<script>
+    $(document).ready( function () {
+    $('#tabla_resultados').DataTable({  "aLengthMenu":[[3,5,10,25,-1],[3,5,10,25,"ALL"]]
+    ,"iDisplayLength":3,colReorder: true,
+    "language":{
+        "lengthMenu": "Mostrar _MENU_ registros por página",
+        "search": "Buscar",
+        "zeroRecords": "Ningún Registro Encontrado",
+        "info": "Página _PAGE_ de _PAGES_",
+        "infoEmpty": "Ningún Registro Disponible",
+        "infoFiltered": "(Filtrado de _MAX_ registro(s) totales)",
+        "paginate": {
+            "first": "Primero",
+            "last":"Ultimo",
+            "next": "Siguiente",
+            "previous":"Anterior"
+            },
+         }
+    });
+    } );
+</script>
+<script src="{{url_for('static', filename='js/obtenerDatos.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </form>
 {% endblock %}

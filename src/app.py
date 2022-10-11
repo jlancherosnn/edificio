@@ -7,7 +7,20 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 
 @app.route('/')
 def index():
+    cursor = con_bd.cursor()
+    sql = """SELECT*FROM serviceluz"""
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    print(datos)
     return render_template('login.html')
+
+def index1():
+    cursor = con_bd.cursor()
+    sql = """SELECT*FROM serviceluz"""
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    print(datos)
+    return render_template('index.html',usuarios=datos)
 
 @app.route('/datosLuz')
 def datosluz():
@@ -40,9 +53,6 @@ def datosgaz():
 def registro():
     return render_template('registro.html')
     
-@app.route('/index')
-def index1():
-    return render_template('index.html')
 
 @app.route('/logo')
 def logo():
@@ -145,7 +155,10 @@ def validacion():
         print(persona[2])
         if usuario in persona[1] and password in persona[2]:
             print("USUARIO HALLADO")
-            return render_template("index.html")
+            sql1= """SELECT * FROM serviceluz"""
+            cursor.execute(sql1)
+            datos = cursor.fetchall()
+            return render_template("index.html",usuarios=datos)
     return render_template("login.html")
 
 #######################TABLAS###########################################
