@@ -9,6 +9,33 @@ app.secret_key = 'hay_alguien_aqui_convida_S0S'
 def index():
     return render_template('login.html')
 
+@app.route('/datosLuz')
+def datosluz():
+    cursor = con_bd.cursor()
+    sql = """SELECT*FROM serviceluz"""
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    print(datos)
+    return render_template('tablaluz.html',usuarios=datos)
+
+@app.route('/datosAgua')
+def datosagua():
+    cursor = con_bd.cursor()
+    sql = """SELECT*FROM serviceagua"""
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    print(datos)
+    return render_template('tablaagua.html',usuarios=datos)
+
+@app.route('/datosGaz')
+def datosgaz():
+    cursor = con_bd.cursor()
+    sql = """SELECT*FROM servicegas"""
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    print(datos)
+    return render_template('tablagaz.html',usuarios=datos)
+
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
