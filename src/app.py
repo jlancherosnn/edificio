@@ -25,7 +25,54 @@ def logo():
     UsuariosRegistradas = cursor.fetchall()
     return render_template('login.html', usuarios = UsuariosRegistradas)
 
-@app.route('/guardar_usuarios', methods=['POST'])
+
+@app.route('/guardarrecibo', methods=['POST','GET'])
+def guardar():
+    cursor = con_bd.cursor()
+    #nombre = request.form['nombre']
+    #print(f"dato recuperado de {nombre}")
+    dato = request.form.get('datos')
+    print(f"recibo de {dato}")
+    nombre = request.form['nombre']
+    cedula = request.form['cedula']
+    valor = request.form['valor']
+    mes = request.form['mes']
+    vencimiento = request.form['fecha1']
+    tore = request.form.get('torre')
+    piso = request.form.get('piso')
+    print(f"datos nombre{nombre} - {cedula} - {valor} - {mes} - {vencimiento} - {tore} - {piso}")
+    if nombre and cedula and valor and mes and vencimiento and tore and piso:
+        if dato == "Agua":
+            sql = """
+                    INSERT INTO serviceAgua( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+        elif dato == "Energia":
+            sql = """
+                    INSERT INTO serviceluz( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+        elif dato == "Gas":
+            sql = """
+                    INSERT INTO servicegas( nombre, cedula, valor, mes, vencimiento, torre, grupo)
+                    VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                """
+            cursor.execute(sql, (nombre, cedula, valor, mes, vencimiento, tore, piso))
+            con_bd.commit()
+            flash("Registro Guardado Correctamente", "info")
+            return render_template('index.html')
+    else:
+        return render_template('index.html')
+
+@app.route('/guardar_usuarios', methods=['POST','GET'])
 def agregarUsuarios():
     cursor = con_bd.cursor()
     usuario = request.form['usuario']
