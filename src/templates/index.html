@@ -77,6 +77,7 @@
                                 <th>Vencimiento</th>
                                 <th>Torre</th>
                                 <th>Grupo</th>
+                                <th scope="col"><i class="fa-sharp fa-solid fa-gears"></i>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,6 +90,9 @@
                                 <td id="taba_vencimiento{{usuarios[0]}}">{{usuarios[5]}}</td>
                                 <td id="taba_torre{{usuarios[0]}}">{{usuarios[6]}}</td>
                                 <td id="taba_grupo{{usuarios[0]}}">{{usuarios[7]}}</td>
+                                <td>
+                                    <a onclick="return confirm('¿Realmente desea eliminar este registro?')" href="/eliminar_persona/{{ usuarios[0] }}" class="btn btn-danger bt-delete btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

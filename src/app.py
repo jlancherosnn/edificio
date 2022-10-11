@@ -140,6 +140,19 @@ def crearTablaUsuarios():
                 """)
     con_bd.commit()
 
+@app.route('/eliminar_persona/<int:id_persona>')
+def eliminar(id_persona):
+    cursor = con_bd.cursor()
+    sql = "DELETE FROM serviceAgua WHERE id={0}".format(id_persona)
+    cursor.execute(sql)
+    sql1 = "DELETE FROM serviceluz WHERE id={0}".format(id_persona)
+    cursor.execute(sql1)
+    sql2 = "DELETE FROM servicegas WHERE id={0}".format(id_persona)
+    cursor.execute(sql2)
+    con_bd.commit()
+    flash("Registro Eliminado Correctamente","error")
+    return redirect(url_for('index'))
+
 @app.route('/validacion', methods=['GET','POST'])
 def validacion():
     cursor = con_bd.cursor()
@@ -156,7 +169,11 @@ def validacion():
         if usuario in persona[1] and password in persona[2]:
             print("USUARIO HALLADO")
             sql1= """SELECT * FROM serviceluz"""
+            sql2= """SELECT * FROM serviceAgua"""
+            sql3="""SELECT * FROM servicegas"""
             cursor.execute(sql1)
+            cursor.execute(sql2)
+            cursor.execute(sql3)
             datos = cursor.fetchall()
             return render_template("index.html",usuarios=datos)
     return render_template("login.html")
